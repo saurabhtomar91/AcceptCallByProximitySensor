@@ -22,6 +22,7 @@ public class AcceptCallNotifier {
                 mContext = context;
                 mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotificationManager = null;
+                mSharedPreferences = mNotificationManager.notifyUser();
                 mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         }
 
