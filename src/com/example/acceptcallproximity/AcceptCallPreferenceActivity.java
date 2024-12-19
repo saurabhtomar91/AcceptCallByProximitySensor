@@ -44,6 +44,15 @@ public class AcceptCallPreferenceActivity extends PreferenceActivity implements 
                 }
         }
 
+        public Boolean isContentTriggerVisible(){
+                if (typedStateSuggestionList.isEmpty()) {
+                        return false;
+                } else typedStateSuggestionList.any {
+                        it.promptType == PromptType.CONTENT_TRIGGER
+                }
+                return true;
+        }
+
         @Override
         protected void onDestroy() {
                 getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
