@@ -20,6 +20,28 @@ public class AcceptCallPreferenceActivity extends PreferenceActivity implements 
                 SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
                 sharedPreferences.registerOnSharedPreferenceChangeListener(this);
                 addPreferencesFromResource(R.xml.preferences);
+
+                if (tvTrigger == null || mPopImageView == null || mPopImageView.getVisibility() != VISIBLE || mPopImageView.getTag() != CONTENT_TRIGGER_TAG) {
+                        if (tvTrigger != null)
+                                tvTrigger.setVisibility(GONE);
+                        return;
+                }
+
+                if (pillsManager != null) {
+                        if (mPillViewContainer != null) {
+                                mPillViewContainer.setVisibility(false, "killPillsManager");
+                                mPillViewContainer.setVisibility(GONE);
+                                mPillViewContainer.removeAllViews();
+                                mPillViewContainer = null;
+                        }
+                        pillsManager.removePillsView("killPillsManager");
+                        pillsManager = null;
+                }
+
+                if (pillsManager != null) {
+                        pillsManager.removePillsView("onConfigurationChanged");
+                        pillsManager = null;
+                }
         }
 
         @Override
